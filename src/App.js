@@ -2,6 +2,17 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+function SectionCreatedQuestions(props) {
+  return (
+    <div className="tooltip">
+      <span className="tooltiptext">
+        Here you can find the created questions and their answers.
+      </span>
+      <h2>Created questions</h2>
+    </div>
+  );
+}
+
 class NewQuestionForm extends Component{
   constructor(props) {
     super(props);
@@ -38,7 +49,6 @@ class NewQuestionForm extends Component{
   render(){
     return(
       <form onSubmit={this.handleSubmit}>
-
         <div className="tooltip">
           <span className="tooltiptext">
             Here you can create new questions and their answers.
@@ -47,11 +57,11 @@ class NewQuestionForm extends Component{
         </div>
         <br/>
         <label>
-          Question:<br/>
+          Question<br/>
           <input type="text" value={this.state.question} onChange={this.handleInputChange} name="question" placeholder="Insert your question here..." /><br/>
         </label>
         <label>
-          Anwser:<br/>
+          Anwser<br/>
           <textarea name="answer" value={this.state.answer} onChange={this.handleInputChange} placeholder="... and your anwser here, please."/><br/>
         </label>
         <br/>
@@ -121,57 +131,63 @@ class Forum extends Component{
     const listOfQuestions = questions.map((question, position) => {
       return (
         <li key={position}>
-          <p onClick={(positioni) => this.showAnswer(position)}>{question.question}</p>
-          <p className={question.showAnswer ? '' : 'hidden'}>{question.answer}</p>
+          <p className="question" onClick={(positioni) => this.showAnswer(position)}>
+            {question.question}
+          </p>
+          <p className={question.showAnswer ? '' : 'hidden'}>
+            <span className="awnser">{question.answer}</span>
+          </p>
         </li>
       );
     });
 
     const numberOfQuestions = listOfQuestions.length;
 
-    if( numberOfQuestions > 0 ){
-      return (
-        <div>
-          <div className="tooltip">
-            <span className="tooltiptext">
-              Here you can find the created questions and their answers.
-            </span>
-            <h2>Created questions</h2>
-          </div>
-          <br/>
-          Questions: {numberOfQuestions}
-          <br/>
+    const textToNumberOfQuestions = 'Until now, we have ' + 
+      (numberOfQuestions == 0 ? 'no' : numberOfQuestions ) +
+      ' question' + (numberOfQuestions == 1 ? '' : 's') + 
+      '. We know that you can do better... Go ahead and do it!';
+
+    const noQuestionsContent = (
+      <div>
+        <div class="no-questions">
+          No questions yet :-/
+        </div>
+      </div>
+    );      
+    
+    let contentToListOfQuestions = null;
+
+    if(numberOfQuestions > 0){
+      contentToListOfQuestions = listOfQuestions;
+    }
+    else{
+      contentToListOfQuestions = noQuestionsContent;
+    }
+
+    return (
+      <div className="grid-container">
+        <div className="new-question-form">
+          <NewQuestionForm 
+            onSubmit={(question, anwser) => this.handleSubmit(question, anwser)}
+            position={numberOfQuestions}
+          />
           <input type="button" value="Remove all questions" onClick={this.removeAllQuestions} />
           <br/>
           <input type="button" value="Sort questions" onClick={this.sortQuestions} />
+          <br/>
+        </div>
+
+        <div className="created-questions">
+          <SectionCreatedQuestions />
+          <br/>
+          <p className="number-of-questions">{textToNumberOfQuestions}</p>
           <ul>
-            {listOfQuestions}
+            {contentToListOfQuestions}
           </ul>
-          <NewQuestionForm 
-            onSubmit={(question, anwser) => this.handleSubmit(question, anwser)}
-            position={numberOfQuestions}
-            />
         </div>
-      );
-    }
-    else{
-      return (
-        <div>
-          <div className="tooltip">
-            <span className="tooltiptext">
-              Here you can find the created questions and their answers.
-            </span>
-            <h2>Created questions</h2>
-          </div>
-          
-          No questions yet :-/
-          <NewQuestionForm 
-            onSubmit={(question, anwser) => this.handleSubmit(question, anwser)}
-            position={numberOfQuestions}
-            />
-        </div>
-      );      
-    }
+      </div>
+    );
   }
 }
 

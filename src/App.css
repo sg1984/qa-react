@@ -3,13 +3,12 @@
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+  height: 120px;
 }
 
 .App-header {
   background-color: #222;
-  height: 150px;
+  height: 160px;
   padding: 20px;
   color: white;
 }
@@ -22,7 +21,71 @@
   font-size: large;
 }
 
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.question{
+  font-weight: 600;
+}
+
+.awnser{
+  font-size: 80%;
+}
+
+.grid-container {
+  display: inline-grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 10px;
+  /* background-color: #2196F3; */
+  padding: 10px;
+}
+
+.created-questions{
+  /* background-color: rgb(82, 243, 33); */
+}
+
+.new-question-form{
+  /* background-color: rgb(178, 207, 170); */
+}
+
+/* General */
+.hidden{
+  display: none;
+}
+
+.no-questions{
+  padding: 10px;
+  background-color: rgb(245, 180, 180);
+  border: solid 1px rgb(253, 109, 109);
+  border-radius: 5px;
+  color: rgb(126, 9, 9);
+  width: 100%;
+}
+
+/* Tooltips */
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: rgb(194, 239, 245);
+  color: black;
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+  top: -5px;
+  left: 100%; 
+  position: absolute;
+  z-index: 1;
+  font-size: 11px;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
 }
