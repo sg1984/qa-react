@@ -225,6 +225,9 @@ class App extends Component {
           <h1 className="App-title">
             The awsome Q/A tool
           </h1>
+          <div className="info">
+            Built by <a target="_blank" rel="noopener noreferrer" href="https://sandrogallina.com"> Sandro Gallina</a>
+          </div>
         </header>
         <Forum />  
       </div>

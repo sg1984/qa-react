@@ -13,6 +13,7 @@
 
 .App-title {
   font-size: 1.5em;
+  margin-bottom: 0px;
 }
 
 .App-intro {
@@ -68,6 +69,18 @@
   border-radius: 5px;
   padding: 5px 10px;
 }
+
+.info{
+  font-size: 80%;
+  margin-top: 3px;
+}
+
+.info a{
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+}
+
 /* General --- END */
 
 /* Buttons --- START */
