@@ -4,11 +4,11 @@ body {
   font-family: sans-serif;
 }
 
-ul li{
+ul{
   list-style: none;
+  padding: 0px;
 }
 
 label{
-  text-align: left;
   font-size: 11px;
 }
